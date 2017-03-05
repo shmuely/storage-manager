@@ -1,7 +1,7 @@
 {
   "name": "storage-manager",
   "description": "Storage Manager module that help you manage your local and session storage",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "license": "MIT",
   "main": "lib/index.js",
   "author": "Itay Shmuely",
