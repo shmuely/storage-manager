@@ -8,9 +8,11 @@ const LocalStorage = {
     return localStorage.setItem(key, JSON.stringify(value))
   },
   get(key, innerGet) {
-    this.clearExpiredKeys(Object.keys(localStorage).filter(item => item.indexOf('__LocalStorage__') !== 0))
     if (!key) { return undefined }
-    !innerGet && this.handleTTL(key)
+    if (!innerGet) {
+      this.clearExpiredKeys(Object.keys(localStorage).filter(item => item.indexOf('__LocalStorage__') !== 0))
+      this.handleTTL(key)
+    }
     let result = localStorage.getItem(key)
     try {
       result = JSON.parse(result)
