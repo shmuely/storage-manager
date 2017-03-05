@@ -75,7 +75,9 @@ const LocalStorage = {
   clearExpiredKeys(keys) {
     keys.forEach(key => {
       const initTTLDate = this.initTTLDate(key)
-      (initTTLDate.now > initTTLDate.calculatedTTLMilliseconds) && this.remove(key)
+      if (initTTLDate.now > initTTLDate.calculatedTTLMilliseconds) {
+        this.remove(key)
+      }
     })
   }
 }
