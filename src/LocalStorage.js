@@ -8,6 +8,7 @@ const LocalStorage = {
     return localStorage.setItem(key, JSON.stringify(value))
   },
   get(key, innerGet) {
+    this.clearExpiredKeys(Object.keys(localStorage).filter(item => item.indexOf('__LocalStorage__') !== 0))
     if (!key) { return undefined }
     !innerGet && this.handleTTL(key)
     let result = localStorage.getItem(key)
@@ -68,6 +69,12 @@ const LocalStorage = {
     if (ttl.days) { calculatedTTLResult += (ttl.days * 24 * 60 * 60 * 1000) }
     if (calculatedTTLResult) { calculatedTTLResult += new Date().getTime() }
     return calculatedTTLResult || 'forever'
+  },
+  clearExpiredKeys(keys) {
+    keys.forEach(key => {
+      const initTTLDate = this.initTTLDate(key)
+      (initTTLDate.now > initTTLDate.calculatedTTLMilliseconds) && this.remove(key)
+    })
   }
 }
 
