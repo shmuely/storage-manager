@@ -1,14 +1,12 @@
-import BaseStorage from './BaseStorage'
+import LocalStorage from './LocalStorage'
+import SessionStorage from './SessionStorage'
 
 const StorageManager = {
-  local: BaseStorage('Local'),
-  session: BaseStorage('Session')
+  local: LocalStorage,
+  session: SessionStorage
 }
 
-const LocalStorage = StorageManager.local
-const SessionStorage = StorageManager.session
-
-export { LocalStorage }
-export { SessionStorage }
+export { LocalStorage };
+export { SessionStorage };
 
 export default StorageManager
