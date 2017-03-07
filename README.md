@@ -19,12 +19,9 @@ Storage Manager module that help you manage your local and session storage
 import { LocalStorage } from 'storage-manager';
 
 const options = { minutes: 2 }
+
 // this will update the ttl everytime you'll get the key
 LocalStorage.set('some-key', 'some-value', options)
-```
-
-```js
-import { LocalStorage } from 'storage-manager';
 
 // it will refresh the TTL of this key to it's default value (2 minutes in that case)
 LocalStorage.get('some-key')
@@ -32,6 +29,7 @@ LocalStorage.get('some-key')
 
 ```js
 import { LocalStorage } from 'storage-manager';
+
 // it will save the key forever untill you will remove it manually
 LocalStorage.set('forever-key', 'some-value')
 LocalStorage.remove('forever-key')
@@ -39,6 +37,7 @@ LocalStorage.remove('forever-key')
 
 ```js
 import { LocalStorage } from 'storage-manager';
+
 // refreshTTL is true by default.
 // refreshTTL means that everytime you'll get this key, it will refresh his TTL to what it was before
 const options = { minutes: 4, seconds: 30, refreshTTL: false }
