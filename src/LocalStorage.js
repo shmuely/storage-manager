@@ -1,7 +1,7 @@
 import StorageHelper from './StorageHelper'
 
 const LocalStorage = {
-  set(key, value, options = {}, innerSet = false) {
+  set(key, value, options = {}) {
     return StorageHelper.set('local', key, value, options)
   },
   get(key, innerGet = false) {
