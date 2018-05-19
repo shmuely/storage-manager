@@ -5,13 +5,14 @@ const StorageHelper = {
     innerSet = innerSet || false
     !innerSet && this.remove(storageType, key)
     window[`${storageType}Storage`].setItem(this.getTTLKey(storageType, key), JSON.stringify({ calculatedTTL: this.getCalculatedTTL(storageType, options), ttlOptions: options }))
-    return window[`${storageType}Storage`].setItem(key, JSON.stringify(value))
+    return window[`${storageType}Storage`].setItem(`${this.getTTLKey(storageType, key)}__VALUE`, JSON.stringify(value))
   },
   get(storageType, key, innerGet) {
     if (!key) { return undefined }
     if (!innerGet) {
       this.clearExpiredKeys(storageType, Object.keys(window[`${storageType}Storage`]).filter(item => !item.includes('__StorageManager__')))
       this.handleTTL(storageType, key)
+      key = `${this.getTTLKey(storageType, key)}__VALUE`
     }
     let result = window[`${storageType}Storage`].getItem(key)
     try {
@@ -21,7 +22,7 @@ const StorageHelper = {
   },
   remove(storageType, key) {
     window[`${storageType}Storage`].removeItem(this.getTTLKey(storageType, key))
-    return window[`${storageType}Storage`].removeItem(key)
+    return window[`${storageType}Storage`].removeItem(`${this.getTTLKey(storageType, key)}__VALUE`)
   },
   clearAll(storageType) {
     return window[`${storageType}Storage`].clear()
