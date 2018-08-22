@@ -1,6 +1,8 @@
 const StorageHelper = {
   set(storageType, key, value, options, innerSet) {
-    if (!key || !value) { throw new Error("StorageManager -> Can't set without a key or value") }
+    if (key === undefined || key === null || value === undefined || value === null) {
+      throw new Error("StorageManager -> Can't set without a key or value")
+    }
     options = options || {}
     innerSet = innerSet || false
     !innerSet && this.remove(storageType, key)
