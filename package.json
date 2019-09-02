@@ -1,7 +1,7 @@
 {
   "name": "storage-manager",
   "description": "Storage Manager module that help you manage your local and session storage",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "license": "MIT",
   "main": "lib/index.js",
   "author": "Itay Shmuely",
@@ -16,21 +16,16 @@
     "lint": "eslint src/ test/",
     "build": "babel -d lib/ src/",
     "pretest": "npm run lint",
-    "test": "ava",
     "watch": "onchange src/ -- npm run build && echo Done",
-    "dev": "npm run watch",
-    "prepublish": "npm run test && npm run build"
+    "start": "npm run watch"
   },
   "devDependencies": {
-    "ava": "^0.18.2",
-    "babel-cli": "^6.23.0",
-    "babel-eslint": "^7.1.1",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.3",
     "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-stage-0": "^6.22.0",
-    "babel-register": "^6.23.0",
-    "eslint": "^3.17.0",
-    "onchange": "^3.2.1"
+    "babel-preset-es2015": "^6.24.1",
+    "eslint": "^6.3.0",
+    "onchange": "^6.0.0"
   },
   "dependencies": {
     "babel-runtime": "^6.23.0"
